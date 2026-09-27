@@ -13,11 +13,15 @@ Tento repozitář slouží jako můj osobní studijní zápisník a přehled ře
    &storeId="></select><img%20src=1%20onerror=alert(1)>
 
 
-Proč použitý payload fungoval?
+# Proč použitý payload fungoval?
+
 Když jsem do URL vložili hodnotu &storeId="></select><img%20src=1%20onerror=alert(1)>, v kódu stránky to vyvolalo tyto tři kroky:
 
+1
 Ukončení atributu ("): Dvojitá úvodzovka předčasně uzavřela aktuální HTML atribut, ve kterém byl vstup původně zasazen.
 
+2
 Uzavření elementu (></select>): Zobáček > ukončil aktuální tag a zápis </select> násilně zavřel celý rozbalovací seznam, čímž se otevřel prostor pro vložení vlastního kódu.
 
+3
 Injekce škodlivého tagu (<img src=1 onerror=alert(1)>): Vložili jsme vlastní obrázek, který se pokusí načíst neplatný zdroj (1). Protože načtení selže, okamžitě se spustí událost onerror, která aktivuje funkci alert(1).
